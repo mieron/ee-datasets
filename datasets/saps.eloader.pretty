@@ -8,6 +8,7 @@ PUT /data ONE_LINE_MAPPING_STRING
           "type": "string",
           "analyzer": "snowball"
         },
+        "authors" : {"type" : "string", "index" : "not_analyzed", "index_name" : "author"},
         "doi": {
           "type": "string",
           "index": "not_analyzed"

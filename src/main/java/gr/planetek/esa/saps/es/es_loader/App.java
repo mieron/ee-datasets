@@ -1,5 +1,7 @@
 package gr.planetek.esa.saps.es.es_loader;
 
+import gr.planetek.esa.saps.es.es_loader.util.ProgressBar;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +54,7 @@ public class App {
             "Gaikler", "Orouzar", "Dak", "Xillim", "Fluly", "Ka", "Trukas", "Jounda", "Cechar",
             "Erees", "Voallra", "Fushn", "Inith", "Meroa" };
     private Random random;
+    private ArrayList authorsShuffled;
 
     public App() {
         // TODO Auto-generated constructor stub
@@ -60,6 +63,10 @@ public class App {
     public static void main(String[] args) {
 
         App dummy = new App();
+        if (args == null || args.length == 0) {
+            System.out.println("You have to specify the number of random samples to generate.");
+            System.exit(-1);
+        }
         dummy.run(Integer.parseInt(args[0]));
 
     }
@@ -68,13 +75,18 @@ public class App {
         initArrays();
         fixFiles();
 
+        ProgressBar bar = new ProgressBar(publications);
+
         for (int i = 0; i < publications; i++)
             try {
+                bar.iterate();
                 FileUtils.writeStringToFile(outFile, generatePublicationObject(i + 1), true);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        System.out.println(String.format("Generated %d random samples in file: %s", publications,
+                outFile.getAbsolutePath()));
     }
 
     private void fixFiles() {
@@ -92,6 +104,7 @@ public class App {
 
         pub.put("id", id);
         pub.put("title", generateTitle());
+        pub.put("authors", generateAuthors());
         pub.put("doi", generateDoi());
 
         int obsNum = random.nextInt(5);
@@ -107,6 +120,19 @@ public class App {
         pub.put("journal", generateJournal());
 
         return pub.toString() + "\n";
+
+    }
+
+    private Object generateAuthors() {
+        int authors = random.nextInt(5) + 3;
+        int startFrom = random.nextInt(authorsShuffled.size() - authors - 1);
+
+        JSONArray auths = new JSONArray();
+
+        for (int i = 0; i < authors; i++) {
+            auths.add(authorsShuffled.get(startFrom + i));
+        }
+        return auths;
 
     }
 
@@ -129,6 +155,9 @@ public class App {
         // titles
         titleRandomWords = new ArrayList(Arrays.asList(titles.split(" ")));
         Collections.shuffle(titleRandomWords);
+
+        authorsShuffled = new ArrayList(Arrays.asList(authors));
+        Collections.shuffle(authorsShuffled);
 
         // publications
         publicationsDistr = new ArrayList<String>();
