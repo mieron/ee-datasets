@@ -114,9 +114,9 @@ public class App {
             observations.add(generateObservationObject());
         }
 
-        pub.put("observation", observations);
+        pub.put("observations", observations);
 
-        pub.put("year", generateYear());
+        pub.put("pubYear", generateYear());
         pub.put("journal", generateJournal());
 
         return pub.toString() + "\n";
