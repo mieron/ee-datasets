@@ -1,53 +1,131 @@
-TRY DELETE /data
-PUT /data ONE_LINE_MAPPING_STRING
+TRY DELETE /saps
+PUT /saps ONE_LINE_MAPPING_STRING
+
 {
   "mappings": {
-    "publications": {
+    "publication": {
       "properties": {
+        "id": {
+          "type": "integer",
+          "index": "not_analyzed"
+        },
         "title": {
           "type": "string",
           "analyzer": "snowball"
         },
-        "authors" : {"type" : "string", "index" : "not_analyzed", "index_name" : "author"},
+        "publicationAbstract": {
+          "type": "string",
+          "analyzer": "snowball"
+        },
+        "publicationText": {
+          "type": "string",
+          "analyzer": "snowball"
+        },
         "doi": {
           "type": "string",
+          "index": "not_analyzed"
+        },
+        "arxiv": {
+          "type": "string",
+          "index ": "not_analyzed"
+        },
+        "bibcode": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "journal": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "pubYear": {
+          "type": "integer",
           "index": "not_analyzed"
         },
         "mission": {
           "type": "string",
           "index": "not_analyzed"
         },
-        "observation": {
+        "approvedBy": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "classificationDate": {
+          "type": "date",
+          "index": "not_analyzed"
+        },
+        "authors": {
+          "type": "string",
+          "index_name": "author"
+        },
+        "observations": {
+          "type": "nested",
           "properties": {
             "id": {
               "type": "string",
+              "index": "not_analyzed"
+            },
+            "obsDate": {
+              "type": "date",
               "index": "not_analyzed"
             },
             "mission": {
               "type": "string",
               "index": "not_analyzed"
             },
+            "revolution": {
+              "type": "integer",
+              "index": "not_analyzed"
+            },
             "instrument": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "filter": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "mode": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "pi": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "piAffiliation": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "exposureTime": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "targetName": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "coordinates": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "featureName": {
               "type": "string",
               "index": "not_analyzed"
             }
           }
         },
-        "year": {
-          "type": "integer",
-          "index": "not_analyzed"
-        },
-        "journal": {
+        "tags": {
           "type": "string",
-          "index": "not_analyzed"
+          "index_name": "tag"
         }
       }
     }
   }
 }
-BULK INDEX data/publications
+
+BULK INDEX saps/publication
 {
-  "_id": 1,
+  "id": 1,
   "title": "Publication AAA",
   "doi": "DOI_aaa_aa",
   "mission": "XMM",
@@ -63,11 +141,11 @@ BULK INDEX data/publications
       "instrument": "Stethoscope"
     }
   ],
-  "year": 2010,
+  "puYear": 2010,
   "journal": "American Astrophysics"
 }
 {
-  "_id": 2,
+  "id": 2,
   "title": "Publication BBB",
   "doi": "DOI_b_bb_bbb",
   "mission": "XMM",
@@ -83,10 +161,10 @@ BULK INDEX data/publications
       "instrument": "Magnifier"
     }
   ],
-  "year": 2011,
+  "pubYear": 2011,
   "journal": "Deep Space Journal"
 }{
-  "_id": 3,
+  "id": 3,
   "title": "Publication CCC",
   "doi": "DOI_cc",
   "mission": "Herchel",
@@ -102,6 +180,6 @@ BULK INDEX data/publications
       "instrument": "Magnifier"
     }
   ],
-  "year": 2012,
+  "pubYear": 2012,
   "journal": "American Astrophysics"
 }
