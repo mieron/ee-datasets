@@ -1,5 +1,5 @@
-TRY DELETE /data
-PUT /data ONE_LINE_MAPPING_STRING
+TRY DELETE /saps
+PUT /saps ONE_LINE_MAPPING_STRING
 
 {
   "mappings": {
@@ -123,7 +123,7 @@ PUT /data ONE_LINE_MAPPING_STRING
   }
 }
 
-BULK INDEX data/publication
+BULK INDEX saps/publication
 {
   "id": 1,
   "title": "Publication AAA",
