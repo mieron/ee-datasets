@@ -55,7 +55,8 @@ PUT /saps ONE_LINE_MAPPING_STRING
         },
         "authors": {
           "type": "string",
-          "index_name": "author"
+          "index_name": "author",
+          "index": "not_analyzed"
         },
         "observations": {
           "type": "nested",
