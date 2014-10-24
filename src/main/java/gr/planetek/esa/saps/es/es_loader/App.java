@@ -157,6 +157,19 @@ public class App {
 
         JSONObject obj = new JSONObject();
         obj.put("id", generateObservationId());
+        obj.put("obsId", generateObservationId());
+
+        JSONArray obsMetadata = new JSONArray();
+        obsMetadata.add(generateObsMetadataObject());
+        obj.put("obsMetadata", obsMetadata);
+        return obj;
+    }
+
+    private JSONObject generateObsMetadataObject() {
+
+        JSONObject obj = new JSONObject();
+        obj.put("id", generateObservationId());
+        obj.put("obsId", generateObservationId());
         obj.put("mission", generateMission());
         obj.put("instrument", generateInstrument());
         obj.put("filter", generateFilter());
