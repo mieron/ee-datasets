@@ -65,53 +65,62 @@ PUT /saps ONE_LINE_MAPPING_STRING
               "type": "string",
               "index": "not_analyzed"
             },
+            "obsId": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
             "obsDate": {
               "type": "date",
               "index": "not_analyzed"
             },
-            "mission": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "revolution": {
-              "type": "integer",
-              "index": "not_analyzed"
-            },
-            "instrument": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "filter": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "mode": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "pi": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "piAffiliation": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "exposureTime": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "targetName": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "coordinates": {
-              "type": "string",
-              "index": "not_analyzed"
-            },
-            "featureName": {
-              "type": "string",
-              "index": "not_analyzed"
+            "obsMetadata": {
+          	  "type": "nested",
+              "properties": {
+                "id": {
+                  "type": "string",
+              	  "index": "not_analyzed"
+              	},
+                "mission": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "instrument": {
+              	  "type": "string",
+                  "index": "not_analyzed"
+            	},
+            	"filter": {
+             	  "type": "string",
+              	  "index": "not_analyzed"
+            	},
+             	"mode": {
+              	  "type": "string",
+              	  "index": "not_analyzed"
+            	},
+            	"exposureTime": {
+              	  "type": "string",
+              	  "index": "not_analyzed"
+            	},
+            	"targetName": {
+              	  "type": "string",
+              	  "index": "not_analyzed"
+            	},
+            	"coordinates": {
+              	  "type": "string",
+              	  "index": "not_analyzed"
+            	},
+            	"proposalScientificCategory": {
+              	  "type": "string",
+              	  "index": "not_analyzed"
+            	},
+             	"pi": {
+              	  "type": "string",
+              	  "index": "not_analyzed"
+            	},
+            	"piAffiliation": {
+              	  "type": "string",
+             	  "index": "not_analyzed"
+            	}
+              }
             }
           }
         },
@@ -133,13 +142,25 @@ BULK INDEX saps/publication
   "observation": [
     {
       "id": "0123456789",
-      "mission": "XMM",
-      "instrument": "Telescope"
+      "obsId": "0123456789",
+      "obsDate": "1-1-2010",
+      "obsMetadata": [
+        {
+      	  "mission": "XMM",
+      	  "instrument": "Telescope"	
+        }
+      ]
     },
     {
       "id": "0987654321",
-      "mission": "XMM",
-      "instrument": "Stethoscope"
+      "obsId": "0123456789",
+      "obsDate": "1-1-2010",
+      "obsMetadata": [
+        {
+      	  "mission": "XMM",
+      	  "instrument": "Telescope"	
+        }
+      ]
     }
   ],
   "puYear": 2010,
@@ -152,14 +173,26 @@ BULK INDEX saps/publication
   "mission": "XMM",
   "observation": [
     {
-      "id": "01234566666",
-      "mission": "XMM",
-      "instrument": "Telescope"
+      "id": "0987654321",
+      "obsId": "0123456789",
+      "obsDate": "1-1-2010",
+      "obsMetadata": [
+        {
+      	  "mission": "XMM",
+      	  "instrument": "Telescope"	
+        }
+      ]
     },
     {
-      "id": "0987656789",
-      "mission": "XMM",
-      "instrument": "Magnifier"
+      "id": "0987654321",
+      "obsId": "0123456789",
+      "obsDate": "1-1-2010",
+      "obsMetadata": [
+        {
+      	  "mission": "XMM",
+      	  "instrument": "Telescope"	
+        }
+      ]
     }
   ],
   "pubYear": 2011,
@@ -171,14 +204,26 @@ BULK INDEX saps/publication
   "mission": "Herchel",
   "observation": [
     {
-      "id": "11111111",
-      "mission": "Herchel",
-      "instrument": "MRI"
+      "id": "0987654321",
+      "obsId": "0123456789",
+      "obsDate": "1-1-2010",
+      "obsMetadata": [
+        {
+      	  "mission": "XMM",
+      	  "instrument": "Telescope"	
+        }
+      ]
     },
     {
-      "id": "343434343",
-      "mission": "Herchel",
-      "instrument": "Magnifier"
+      "id": "0987654321",
+      "obsId": "0123456789",
+      "obsDate": "1-1-2010",
+      "obsMetadata": [
+        {
+      	  "mission": "XMM",
+      	  "instrument": "Telescope"	
+        }
+      ]
     }
   ],
   "pubYear": 2012,
