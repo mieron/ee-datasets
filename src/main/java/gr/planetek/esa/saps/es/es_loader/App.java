@@ -147,6 +147,7 @@ public class App {
         }
 
         pub.put("observations", observations);
+        pub.put("observationsCount", obsNum);
 
         pub.put("pubYear", generateYear());
         pub.put("journal", generateJournal());
@@ -178,19 +179,26 @@ public class App {
         obj.put("id", generateObservationId());
         obj.put("obsId", generateObservationId());
         obj.put("mission", mission != null ? mission : generateMission());
+        
         JSONArray obsMetadata = new JSONArray();
+
+        int metadataCount = random.nextInt(3);
+        for (int i = 0; i < metadataCount; i++) {
+            obsMetadata.add(generateObsMetadataObject(mission));
+        }
+
         obj.put("obsMetadata", obsMetadata);
         return obj;
     }
 
-    private JSONObject generateObsMetadataObject() {
+    private JSONObject generateObsMetadataObject(String mission) {
 
         JSONObject obj = new JSONObject();
         obj.put("id", generateObservationId());
         obj.put("obsId", generateObservationId());
         obj.put("instrument", generateInstrument());
         obj.put("filter", generateFilter());
-        obj.put("target", generateTarget());
+        obj.put("targetName", generateTarget());
 
         return obj;
     }
