@@ -149,7 +149,7 @@ public class App {
         pub.put("observations", observations);
         pub.put("observationsCount", obsNum);
 
-        pub.put("pubYear", generateYear());
+        pub.put("publicationYear", generateYear());
         pub.put("journal", generateJournal());
 
         return pub.toString() + "\n";
