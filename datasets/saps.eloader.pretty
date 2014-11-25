@@ -56,7 +56,12 @@ PUT /saps ONE_LINE_MAPPING_STRING
         "authors": {
           "type": "string",
           "index_name": "author",
-          "index": "not_analyzed"
+          "index": "not_analyzed",
+          "suggest": {
+            "type": "completion",
+            "index_analyzer": "simple",
+            "search_analyzer": "simple"
+          }
         },
         "observations": {
           "type": "nested",
@@ -74,52 +79,52 @@ PUT /saps ONE_LINE_MAPPING_STRING
               "index": "not_analyzed"
             },
             "obsMetadata": {
-          	  "type": "nested",
+              "type": "nested",
               "properties": {
                 "id": {
                   "type": "string",
-              	  "index": "not_analyzed"
-              	},
+                  "index": "not_analyzed"
+                },
                 "mission": {
                   "type": "string",
                   "index": "not_analyzed"
                 },
                 "instrument": {
-              	  "type": "string",
+                  "type": "string",
                   "index": "not_analyzed"
-            	},
-            	"filter": {
-             	  "type": "string",
-              	  "index": "not_analyzed"
-            	},
-             	"mode": {
-              	  "type": "string",
-              	  "index": "not_analyzed"
-            	},
-            	"exposureTime": {
-              	  "type": "string",
-              	  "index": "not_analyzed"
-            	},
-            	"targetName": {
-              	  "type": "string",
-              	  "index": "not_analyzed"
-            	},
-            	"coordinates": {
-              	  "type": "string",
-              	  "index": "not_analyzed"
-            	},
-            	"proposalScientificCategory": {
-              	  "type": "string",
-              	  "index": "not_analyzed"
-            	},
-             	"pi": {
-              	  "type": "string",
-              	  "index": "not_analyzed"
-            	},
-            	"piAffiliation": {
-              	  "type": "string",
-             	  "index": "not_analyzed"
-            	}
+                },
+                "filter": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "mode": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "exposureTime": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "targetName": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "coordinates": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "proposalScientificCategory": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "pi": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                },
+                "piAffiliation": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
               }
             }
           }
@@ -132,7 +137,6 @@ PUT /saps ONE_LINE_MAPPING_STRING
     }
   }
 }
-
 BULK INDEX saps/publication
 {
   "id": 1,
