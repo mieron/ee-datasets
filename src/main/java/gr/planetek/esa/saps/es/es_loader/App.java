@@ -149,7 +149,7 @@ public class App {
         pub.put("observations", observations);
         pub.put("observationsCount", obsNum);
 
-        pub.put("publicationYear", generateYear());
+        pub.put("publishedYear", generateYear());
         pub.put("journal", generateJournal());
 
         return pub.toString() + "\n";
@@ -179,7 +179,7 @@ public class App {
         obj.put("id", generateObservationId());
         obj.put("obsId", generateObservationId());
         obj.put("mission", mission != null ? mission : generateMission());
-        
+
         JSONArray obsMetadata = new JSONArray();
 
         int metadataCount = random.nextInt(3);
